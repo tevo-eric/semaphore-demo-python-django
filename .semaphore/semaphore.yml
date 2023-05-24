@@ -57,6 +57,8 @@ blocks:
             - cache store
 
   - name: "Run Code Analysis"
+    skip:
+        when: "pull_request =~ '.*'"
     task:
       # This block executes code analysis tests with pylint.
       prologue:
