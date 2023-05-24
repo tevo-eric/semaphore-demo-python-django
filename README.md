@@ -1,4 +1,4 @@
-#### A Semaphore demo CI/CD pipeline using Python Django
+##### A Semaphore demo CI/CD pipeline using Python Django
 
 Example Python Django application and CI/CD pipeline for integrating it with Semaphore 2.0.
 This application demonstrates CRUD operations using class based views in Django. It also includes UI for all CRUD views.
