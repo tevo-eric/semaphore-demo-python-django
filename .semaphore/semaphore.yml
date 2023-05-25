@@ -109,7 +109,7 @@ blocks:
 
   - name: "Run Browser Tests"
     skip:
-        when: "pull_request =~ '.*'" OR "branch = 'master'"
+        when: "pull_request =~ '.*' OR branch = 'master'"
     task:
       # This block runs browser-based tests.
       # We need to set environment variables.
