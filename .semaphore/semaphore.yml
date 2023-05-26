@@ -27,6 +27,7 @@ global_job_config:
 # See https://docs.semaphoreci.com/article/62-concepts
 blocks:
   - name: "Install Dependencies"
+    dependencies: []
     task:
       # This block installs all the python dependencies,
       # as well as all the required Linux packages.
