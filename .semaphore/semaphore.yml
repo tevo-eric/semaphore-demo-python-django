@@ -59,8 +59,8 @@ blocks:
   - name: "Run Code Analysis"
     dependencies:
       - "Install Dependencies"
-    run:
-        when: "pull_request =~ '.*'"
+    #run:
+    #    when: "pull_request =~ '.*'"
     task:
       # This block executes code analysis tests with pylint.
       prologue:
@@ -84,8 +84,8 @@ blocks:
   - name: "Run Unit Tests"
     dependencies:
       - "Install Dependencies"
-    run:
-        when: "branch != 'master'"
+    #run:
+    #    when: "branch != 'master'"
     task:
       # This block runs the unit tests.
       # Since the test require a database, we start the database here.
