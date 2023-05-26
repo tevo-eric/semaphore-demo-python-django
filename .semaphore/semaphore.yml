@@ -108,7 +108,7 @@ blocks:
             - python manage.py test tasks.tests.test_views
 
   - name: "Run Browser Tests"
-    skip:
+    run:
         when: "pull_request =~ '.*' OR branch = 'master'"
     task:
       # This block runs browser-based tests.
