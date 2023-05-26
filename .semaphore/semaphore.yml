@@ -158,4 +158,3 @@ promotions:
     pipeline_file: cd.yml
     auto_promote:
       when: "result = 'passed' and branch !='master' and branch != 'main'"
-
