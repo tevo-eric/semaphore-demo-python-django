@@ -57,8 +57,10 @@ blocks:
             - cache store
 
   - name: "Run Code Analysis"
-    skip:
-        when: "pull_request =~ '.*'"
+    dependencies:
+      - "Install Dependencies"
+    #run:
+    #    when: "pull_request =~ '.*'"
     task:
       # This block executes code analysis tests with pylint.
       prologue:
@@ -80,8 +82,10 @@ blocks:
               xargs pylint -E --load-plugins=pylint_django
 
   - name: "Run Unit Tests"
-    skip:
-        when: "branch != 'master'"
+    dependencies:
+      - "Install Dependencies"
+    #run:
+    #    when: "branch != 'master'"
     task:
       # This block runs the unit tests.
       # Since the test require a database, we start the database here.
@@ -108,6 +112,8 @@ blocks:
             - python manage.py test tasks.tests.test_views
 
   - name: "Run Browser Tests"
+    run:
+        when: "pull_request =~ '.*' OR branch = 'master'"
     task:
       # This block runs browser-based tests.
       # We need to set environment variables.
@@ -150,3 +156,9 @@ blocks:
            - pip install -r requirements.txt --cache-dir .pip_cache
            # Test if project can be deployed securely.
            - python manage.py check --deploy --fail-level ERROR
+
+promotions:
+  - name: Deployment
+    pipeline_file: cd.yml
+    auto_promote:
+      when: "result = 'passed' and branch !='master' and branch != 'main'"
