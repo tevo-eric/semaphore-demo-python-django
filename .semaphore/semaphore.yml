@@ -57,6 +57,8 @@ blocks:
             - cache store
 
   - name: "Run Code Analysis"
+    dependencies:
+      - "Install Dependencies"
     run:
         when: "pull_request =~ '.*'"
     task:
@@ -80,7 +82,9 @@ blocks:
               xargs pylint -E --load-plugins=pylint_django
 
   - name: "Run Unit Tests"
-    skip:
+    dependencies:
+      - "Install Dependencies"
+    run:
         when: "branch != 'master'"
     task:
       # This block runs the unit tests.
