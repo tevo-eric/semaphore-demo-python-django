@@ -113,6 +113,9 @@ blocks:
             - python manage.py test tasks.tests.test_views
 
   - name: "Run Browser Tests"
+    dependencies:
+      - "Run Code Analysis"
+      - "Run Unit Tests"
     run:
         when: "pull_request =~ '.*' OR branch = 'master'"
     task:
@@ -147,6 +150,8 @@ blocks:
 
 
   - name: "Run Security Tests"
+    dependencies:
+      - "Run Browser Tests"
     task:
       # This block runs through the security checklist for the project.
       jobs:
